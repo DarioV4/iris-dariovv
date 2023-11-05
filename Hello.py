@@ -62,7 +62,7 @@ def run():
         results = classify(user_iris)
         iris_classes = ['Iris-Setosa', 'Iris-Versicolor', 'Iris-Virginica']
         for i in results:
-             st.write(f'Your iris is of type: ', (iris_classes[i]))
+             st.write(f'Your iris is of type: ', {iris_classes[i]});
 
 
 if __name__ == "__main__":
