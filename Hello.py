@@ -30,7 +30,7 @@ class Model:
         return np.array(predictions)
 
 def classify(instances):
-        model = Model
+        model = Model()
         classes = model.predict(instances)
         return classes
 
