@@ -25,9 +25,9 @@ class Model:
     def predict(self, instances):
         predictions = []
         for i in instances:
-            predictions.append(4)
+            predictions.append(2)
        
-        return predictions
+        return np.array(predictions)
 
 def classify(instances):
     model = Model
@@ -35,10 +35,10 @@ def classify(instances):
     return classes
 
 def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
+    #st.set_page_config(
+    #page_title="Hello",
+    #page_icon="👋",
+    #)
 
     st.write("# Welcome to the Iris Classifier")
 
@@ -58,7 +58,7 @@ def run():
 
     if st.button('Submit'):
         st.write(f'The values you submitted are: ',sepal_length, sepal_width, petal_length, petal_width)
-        user_iris=np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+        user_iris = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
         results = classify(user_iris)
         iris_classes = ['Iris-Setosa', 'Iris-Versicolor', 'Iris-Virginica']
         for i in results:
