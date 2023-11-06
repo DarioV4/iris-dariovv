@@ -25,7 +25,7 @@ class Model:
     def predict(self, instances):
         predictions = []
         for i in instances:
-            predictions.append(0)
+            predictions.append(3)
        
         return np.array(predictions)
 
