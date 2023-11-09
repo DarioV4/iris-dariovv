@@ -16,7 +16,7 @@ import streamlit as st
 from streamlit.logger import get_logger
 import numpy as np
 import joblib
-import sklearn
+from sklearn.svm import SVC
 
 LOGGER = get_logger(__name__)
 
@@ -78,7 +78,7 @@ def run():
         st.write(f'There results are: {results}')
         iris_classes = ['Iris-Setosa', 'Iris-Versicolor', 'Iris-Virginica']
         for i in results:
-             st.write(f'Your iris is of type: {iris_classes[i]}')
+            st.write(f'Your iris is of type: {iris_classes[i]}')
 
 
 if __name__ == "__main__":
