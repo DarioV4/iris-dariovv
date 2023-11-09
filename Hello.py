@@ -46,7 +46,7 @@ def run():
     scaler = joblib.load("iris-scaler.pkl")
 
     #Load Model
-    model = joblib.load("knn_model.okl")
+    model = joblib.load("knn_model.pkl")
 
     st.write("# Welcome to the Iris Classifier")
 
