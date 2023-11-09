@@ -16,7 +16,7 @@ import streamlit as st
 from streamlit.logger import get_logger
 import numpy as np
 import joblib
-from sklearn.svm import SVC
+import sklearn
 
 LOGGER = get_logger(__name__)
 
@@ -72,13 +72,13 @@ def run():
         user_iris_scaled = scaler.transform(user_iris)
         st.write(f'Scaled Data: {user_iris_scaled}')
 
-        #Use the model to perdict
-        results = model.perdict(user_iris_scaled)
+        #Use the model to predict
+        results = model.predict(user_iris_scaled)
 
         st.write(f'There results are: {results}')
         iris_classes = ['Iris-Setosa', 'Iris-Versicolor', 'Iris-Virginica']
         for i in results:
-            st.write(f'Your iris is of type: {iris_classes[i]}')
+             st.write(f'Your iris is of type: {iris_classes[i]}')
 
 
 if __name__ == "__main__":
