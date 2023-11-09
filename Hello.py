@@ -63,14 +63,21 @@ def run():
     sepal_width = st.text_input(label='sepal_width')
     petal_length = st.text_input(label='petal_length')
     petal_width = st.text_input(label='petal_width')
+    attributes_list = eval('[' + st.text_input(lable= 'parameters list') + ']')
 
     if st.button('Submit'):
-        st.write(f'The values you submitted are: ',sepal_length, sepal_width, petal_length, petal_width)
-        user_iris = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-
+        if len(attributes_list) > 0:
+            st.write(f'The values you submitted as list are: ', attributes_list)
+            user_iris = np.arry([attributes_list])
+        else:
+            st.write(f'The values you submitted are: ',sepal_length, sepal_width, petal_length, petal_width)
+            user_iris = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+        
+        #Scale the inputs
         user_iris_scaled = scaler.transform(user_iris)
         st.write(f'Scaled Data: {user_iris_scaled}')
-
+        
+        #Use the model to predict
         results = model.perdict(user_iris_scaled)
 
         st.write(f'There results are: {results}')
