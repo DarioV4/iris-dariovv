@@ -15,30 +15,38 @@
 import streamlit as st
 from streamlit.logger import get_logger
 import numpy as np
+import joblib
+import sklearn
 
 LOGGER = get_logger(__name__)
 
-class Model:
-    def _init_(self):
-        pass
+#class Model:
+   # def _init_(self):
+       # pass
     
-    def predict(self, instances):
-        predictions = []
-        for i in instances:
-            predictions.append(0)
+   # def predict(self, instances):
+       # predictions = []
+       # for i in instances:
+            #predictions.append(0)
        
-        return np.array(predictions)
+       # return np.array(predictions)
 
-def classify(instances):
-        model = Model()
-        classes = model.predict(instances)
-        return classes
+#def classify(instances):
+        #model = Model()
+       # classes = model.predict(instances)
+       # return classes
 
 def run():
     #st.set_page_config(
     #page_title="Hello",
     #page_icon="👋",
     #)
+
+    #Load Scaler
+    scaler = joblib.load("iris-scaler.pkl")
+
+    #Load Model
+    model = joblib.load("knn_model.okl")
 
     st.write("# Welcome to the Iris Classifier")
 
@@ -59,7 +67,13 @@ def run():
     if st.button('Submit'):
         st.write(f'The values you submitted are: ',sepal_length, sepal_width, petal_length, petal_width)
         user_iris = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-        results = classify(user_iris)
+
+        user_iris_scaled = scaler.transform(user_iris)
+        st.write(f'Scaled Data: {user_iris_scaled}')
+
+        results = model.perdict(user_iris_scaled)
+
+        st.write(f'There results are: {results}')
         iris_classes = ['Iris-Setosa', 'Iris-Versicolor', 'Iris-Virginica']
         for i in results:
              st.write(f'Your iris is of type: {iris_classes[i]}')
